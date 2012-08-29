@@ -1,6 +1,6 @@
 {
 	"name": "Strava Ride Exporter",
-	"version": "0.1",
+	"version": "0.2",
 	"manifest_version": 2,
 	"description": "Download Strava rides as GPX or TCX files.  Many thanks to Cosmo Catalano (http://cosmocatalano.com/strava/export/)",
 	"permissions": [
@@ -11,6 +11,10 @@
 		"matches": [ "http://app.strava.com/rides/*" ],
 		"js": [
 			"js/jquery-1.8.0.min.js",
+			"js/classy.js",
+			"js/mustache.js",
+			"js/FileSaver.min.js",
+			"js/strava-ride.js",
 			"js/content.js"
 		]
 	}]

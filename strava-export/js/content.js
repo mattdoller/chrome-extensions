@@ -5,35 +5,21 @@ $(document).ready(function() {
 		return;
 	}
 	
-	var formAction = 'http://cosmocatalano.com/strava/export/export_start.php';
-	
 	var actions = $('#sidebar-summary section.actions div.right');
 	var dropdown = $('<div class="drop-down-menu enabled" id="activity-actions" />').appendTo(actions);
 	var selection = $('<div class="selection">Actions</div>').appendTo(dropdown);
 	var options = $('<ul class="options" style="display: none;" />').appendTo(dropdown);
-	
-		var gpx = 
-		$('<li>' 
-			+ '<a class="export-from-strava" data-ridetype="GPX">Export GPX</a>' 
-			+ '<form method="POST" action="' + formAction + '" target="_blank">'
-				+ '<input type="hidden" name="rideurl" value="' + document.URL + '" />'
-				+ '<input type="hidden" name="ridetype" value="GPX" />'
-			+ '</form>'
-		+ '</li>'
-	).appendTo(options);
-
-	var tcx = 
-		$('<li>' 
-			+ '<a class="export-from-strava" data-ridetype="TCX">Export TCX</a>' 
-			+ '<form method="POST" action="' + formAction + '" target="_blank">'
-				+ '<input type="hidden" name="rideurl" value="' + document.URL + '" />'
-				+ '<input type="hidden" name="ridetype" value="TCX" />'
-			+ '</form>'
-		+ '</li>'
-	).appendTo(options);
+	var gpx = $('<li><a class="export-from-strava" data-ridetype="GPX">Export GPX</a></li>').appendTo(options);
 		
 	$('a.export-from-strava').click(function() {
-		var form = $(this).next('form');
-		$(form).submit();
+
+		var id = window.location + '';
+		var rideId = id.substr(id.lastIndexOf('/') + 1, 1000);
+
+		var stravaRide = new StravaRide(rideId);
+		var gpx = stravaRide.toGpx();
+
+		var blob = new Blob([gpx.xml], { type: 'application/xml+gpx' });
+		saveAs(blob, gpx.name + '.gpx');
 	});
 })
