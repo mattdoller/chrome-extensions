@@ -12,7 +12,7 @@ $(document).ready(function() {
 	var selection = $('<div class="selection">Actions</div>').appendTo(dropdown);
 	var options = $('<ul class="options" style="display: none;" />').appendTo(dropdown);
 	
-		var gpx = 
+	var gpx = 
 		$('<li>' 
 			+ '<a class="export-from-strava" data-ridetype="GPX">Export GPX</a>' 
 			+ '<form method="POST" action="' + formAction + '" target="_blank">'
