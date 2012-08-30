@@ -18,7 +18,7 @@
 			"js/lib/FileSaver.min.js",
 			"js/strava/strava-context.js",
 			"js/strava/strava-gpx-exporter.js",
-			"js/strava/strava-ride.js",
+			"js/strava/strava-api.js",
 			"js/rides-content.js"
 		]
 	}]
