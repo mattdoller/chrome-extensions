@@ -45,7 +45,7 @@ var StravaContext = Class.$(extend({
     var a =  document.createElement('a');
     a.href = this.url;
     return {
-        source: url,
+        source: this.url,
         protocol: a.protocol.replace(':',''),
         host: a.hostname,
         port: a.port,
