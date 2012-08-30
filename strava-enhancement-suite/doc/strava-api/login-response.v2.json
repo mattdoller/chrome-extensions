@@ -1,0 +1,15 @@
+// https://app.strava.com/api/v2/authentication/login
+
+// success
+{
+	'token': 'some authentication token',
+	'athlete': {
+		'id': <athlete id>,
+		...
+	}
+}
+	
+// error
+{
+	'error': <error message>
+}
