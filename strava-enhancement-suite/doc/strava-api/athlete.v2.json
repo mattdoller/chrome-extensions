@@ -1,0 +1,21 @@
+// http://app.strava.com/api/v2/athletes/<athlete id>?token=<authorization token>
+// note - following taken from strava docs here: https://stravasite-main.pbworks.com/w/page/51754302/v2%20athletes%20show
+{
+	"id":19,
+	"name":"Christopher Donahue",
+	"agreed_to_terms":true,
+	"super_user":true,
+	"iphone_tester":false,
+	"push_token":null, 
+	"default_settings":{
+		"sample_rate":3,
+		"continuous_gps":true,
+		"accuracy":0,
+		"distance_filter":3,
+		"max_search_time":30, 
+		"min_stale_time":300,
+		"min_accuracy":150,
+		"map_threshold":25,
+		"max_sync_time":60
+	}
+}

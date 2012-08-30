@@ -1,0 +1,12 @@
+{
+	"segment": {
+		"id": <segment id>,
+		"name": <segment name>,
+		"distance": <distance in meters>,
+		"elevationGain": <elevation gain in meters>,
+		"elevationHigh": <elevation high in meters>,
+		"elevationLow": <elevation low in meters>,
+		"averageGrade": <average grade in %>,
+		"climbCategory": <one of [NC, 4, 3, 2, 1, HC]
+	}
+}

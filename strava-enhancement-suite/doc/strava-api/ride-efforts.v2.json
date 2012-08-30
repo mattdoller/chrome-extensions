@@ -1,0 +1,29 @@
+// http://app.strava.com/api/v2/rides/<ride id>/efforts
+{
+	"id": <ride id>,
+	"efforts": [{
+		"effort": {
+			"id": <effort id>,
+			"start_date_local": <start time in format YYYY-MM-DDTHH:MM:SSZ>,,
+			"elapsed_time": <elapsed time in seconds>,
+			"moving_time": <moving time in seconds>,
+			"distance": <distance in meters>,
+			"average_speed": <average speed in meters per second>
+		},
+		"segment": {
+			"id": <segment id>,
+			"name": <segment name>,
+			"climb_category": <climb category rating - one of [NC, 1, 2, 3, 4, HC],
+			"avg_grade": <average grade %>,
+			"start_latlng": [
+				<start latitude>,
+				<start longitude>
+			],
+			"end_latlng": [
+				<end latitude>,
+				<end longitude>
+			],
+			"elev_difference": <elevation difference in meters>
+		}
+	}]
+}

@@ -1,0 +1,29 @@
+// http://app.strava.com/api/v1/efforts/<effort id>
+{
+	"effort": {
+		"id": <effort id>,
+		"startDate": <start time in format YYYY-MM-DDTHH:MM:SSZ>,
+		"startDateLocal": <local start time in format YYYY-MM-DDTHH:MM:SSZ>,
+		"timeZoneOffset": <timezone offset to GMT in seconds>,
+		"elapsedTime": <elapsed time in seconds>,
+		"movingTime": <moving time in seconds>,
+		"distance": <distance in meters>,
+		"averageSpeed": <average speed in meters/second>,
+		"averageWatts": <average watts>,
+		"maximumSpeed": <max speed in meters/second>,
+		"elevationGain": <elevation gain in meters>,
+		"segment": {
+			"id": <id of the segment covered in the effort>,
+			"name": <name of the segment covered in the effort>
+		},
+		"athlete": {
+			"id": <id of the athlete that did the effort>,
+			"name": <name of the athlete that did the effort>,
+			"username": <username of the athlete of the effort>
+		},
+		"ride": {
+			"id": <id of the ride in which the effort was done>,
+			"name": <name of the ride in which the effort was done>
+		}
+	}
+}
