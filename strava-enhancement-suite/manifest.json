@@ -16,8 +16,10 @@
 			"js/lib/classy.js",
 			"js/lib/mustache.js",
 			"js/lib/FileSaver.min.js",
+			"js/strava/strava-context.js",
+			"js/strava/strava-gpx-exporter.js",
 			"js/strava/strava-ride.js",
-			"js/content.js"
+			"js/rides-content.js"
 		]
-	}
+	}]
 }
