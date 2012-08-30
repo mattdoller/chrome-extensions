@@ -1,0 +1,23 @@
+{
+	"name": "Strava Enhancement Suite",
+	"version": "0.1",
+	"manifest_version": 2,
+	"description": "Add additional functionality to Strava, including GPX exports",
+	"permissions": [
+		"tabs",
+		"http://app.strava.com/rides/*"
+	],
+	"content_scripts": [{
+		"matches": [ 
+			"http://app.strava.com/rides/*" 
+		],
+		"js": [
+			"js/lib/jquery-1.8.0.min.js",
+			"js/lib/classy.js",
+			"js/lib/mustache.js",
+			"js/lib/FileSaver.min.js",
+			"js/strava/strava-ride.js",
+			"js/content.js"
+		]
+	}
+}
