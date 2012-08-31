@@ -1,6 +1,7 @@
 var StravaGpxExporter = Class.$extend({
-	__init__ : function(rideId) {
-		this.id = rideId;
+	__init__ : function(rideId, strava) {
+		this.rideId = rideId;
+		this.strava = (arguments.length == 1) ? new StravaApi() : strava;
 	},
 
 	toGpx : function() {
@@ -37,42 +38,30 @@ var StravaGpxExporter = Class.$extend({
 	},
 
 	getRide : function() {
-
-		var instance = this;
 	
-		var ride = {};
-		ride.trkpts = [];
+		var rideJson = this.strava.findRide(this.rideId);
 
-		var rideApi = 'http://app.strava.com/api/v1/rides/' + this.id;
-		$.ajax({
-			url: rideApi,
-			async: false,
-			success: function(response) {
-				// get some generate info about the ride
-				ride.name = instance.xmlEncode(response.ride.name),
-				ride.distance = response.ride.distance,
-				ride.location = response.ride.location,
-				ride.description = response.ride.description
-			}
-		});
+		var streams = ['latlng', 'distance', 'altitude'];
+		var streamsJson = this.strava.findRideStreams(this.rideId, streams);
 
-		var streamsApi = 'http://app.strava.com/api/v1/streams/' + this.id + '?streams[]=latlng,distance,altitude';
-		$.ajax({
-			url: streamsApi,
-			async: false,
-			success: function(response) {
-				for (var i = 0; i < response.latlng.length; i++) {
-					var latlng = response.latlng[i];
-					var ele = response.altitude[i];
-					
-					ride.trkpts.push({
-						lat: latlng[0],
-						lon: latlng[1],
-						ele: ele
-					});
-				}
-			}
-		});
+		var ride = {
+			name: this.xmlEncode(rideJson.ride.name),
+			distance: rideJson.ride.distance,
+			location: rideJson.ride.location,
+			description: rideJson.ride.description,
+			trkpts: []
+		};
+
+		for (var i = 0; i < streamsJson.latlng.length; i++) {
+			var latlng = streamsJson.latlng[i];
+			var ele = streamsJson.altitude[i];
+			
+			ride.trkpts.push({
+				lat: latlng[0],
+				lon: latlng[1],
+				ele: ele
+			});
+		}
 
 		return ride;
 	},
@@ -82,5 +71,4 @@ var StravaGpxExporter = Class.$extend({
 			? s.replace(/&/gm,"&amp;").replace(/</gm,"&lt;").replace(/>/gm,"&gt;")
 			: '';
 	}
-
 });

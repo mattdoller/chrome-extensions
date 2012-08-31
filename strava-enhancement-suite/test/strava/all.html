@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Strava Tests</title>
+
+		<!-- load up jquery first (lots of things depend on it) -->
+		<script src="../../js/lib/jquery-1.8.0.min.js"></script>
+
+		<!-- test setup -->
+		<script src="../libs/qunit/qunit-1.9.0.js"></script>	
+		<script src="../libs/jsmockito/jsmockito-1.0.4-minified.js"></script>
+		<script src="../libs/jshamcrest/jshamcrest-min.js"></script>
+
+		<link rel="stylesheet" href="../libs/qunit/qunit-1.9.0.css" />
+	</head>
+	<body>
+		<div id="qunit"></div>
+	
+		<!-- required libs -->
+		<script src="../../js/lib/classy.js"></script>
+		<script src="../../js/lib/FileSaver.min.js"></script>
+		<script src="../../js/lib/mustache.js"></script>
+
+		<!-- libs to test -->
+		<script src="../../js/strava/strava-context.js"></script>
+		<script src="../../js/strava/strava-api.js"></script>
+		<script src="../../js/strava/strava-gpx-exporter.js"></script>
+
+		<!-- test scripts -->
+		<script src="strava-context-test.js"></script>
+		<script src="strava-api-test.js"></script>
+		<script src="strava-gpx-exporter-test.js"></script>
+	</body>
+</html>

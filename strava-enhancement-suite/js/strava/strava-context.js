@@ -1,4 +1,4 @@
-var StravaContext = Class.$(extend({
+var StravaContext = Class.$extend({
 	__init__ : function(url) {
 		this.url = url;
 	},
@@ -20,7 +20,7 @@ var StravaContext = Class.$(extend({
 
 		// /segments/<segment_id>
 		var path = (parsed.path || '').toLowerCase();
-		var regex /\/segments\/(\d+)/;
+		var regex = /\/segments\/(\d+)/;
 		var matches = path.match(regex);
 		return (matches && matches[1]) ? matches[1] : null;	
 	},
@@ -34,7 +34,7 @@ var StravaContext = Class.$(extend({
 
 		// /athletes/<athlete_id>
 		var path = (parsed.path || '').toLowerCase();
-		var regex /\/athletes\/(\d+)/;
+		var regex = /\/athletes\/(\d+)/;
 		var matches = path.match(regex);
 		return (matches && matches[1]) ? matches[1] : null;
 	},
