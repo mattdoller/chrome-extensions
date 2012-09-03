@@ -1,4 +1,4 @@
-test('Strava GPX exporter tests', function() {
+test('StravaGpxExporter tests', function() {
 
 	JsMockito.Integration.importTo(window);
 
@@ -17,13 +17,13 @@ test('Strava GPX exporter tests', function() {
 
 	// we should find the segments for ride 123
 	when(strava).findRideStreams(123).thenReturn({
-		'altitude' : [ 1, 2, 3, 4	],
-		'distance' : [ 5, 6, 7, 8	],
+		'altitude' : [ 1, 2, 3, 4 ],
+		'distance' : [ 5, 6, 7, 8 ],
 		'latlng' : [ [0,0], [1,2], [3,4], [5,6] ]
 	})
 
 	// create the exporter with the mock api
-	var exporter = StravaGpxExporter(123, strava);
+	var exporter = new StravaGpxExporter(123, strava);
 	var gpx = exporter.toGpx();
 
 	var expectedXml = 

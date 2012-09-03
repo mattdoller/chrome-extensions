@@ -28,7 +28,7 @@ var StravaApi = Class.$extend({
 	},
 	
 	findRideEfforts : function(rideId) {
-		var api = 'http://app.strava.com/api/v2/rides/' + rideId + 'efforts';
+		var api = 'http://app.strava.com/api/v2/rides/' + rideId + '/efforts';
 		return this.asyncGet(api);
 	},
 	
@@ -43,22 +43,39 @@ var StravaApi = Class.$extend({
 		return this.asyncGet(api);
 	},
 	
+	findSegmentEfforts : function(segmentId, data) {
+		/*
+			the data parameter can take a bunch of different params:
+			- clubId
+			- athleteId
+			- athleteName
+			- startDate - YYYY-MM-DD
+			- endDate - YYYY-MM-DD
+			- best - shows best times per athlete, sorted elapsed time
+		*/
+
+		var api = 'http://app.strava.com/api/v1/segments/' + segmentId + '/efforts';
+		return this.asyncGet(api, data);
+	},
+	
 	// private methods
 	asyncGet : function(apiUrl, data) {
-		return $.ajax({
+		var json = $.ajax({
 			type: 'GET',
 			url: apiUrl,
 			data: data || {},
 			async: false
 		}).responseText;
+		return $.parseJSON(json);
 	},
 	
 	asyncPost : function(apiUrl, data) {
-		return $.ajax({
+		var json = $.ajax({
 			type: 'POST',
 			url: apiUrl,
 			data: data || {},
 			async: false
 		}).responseText;
+		return $.parseJSON(json);
 	}
 });

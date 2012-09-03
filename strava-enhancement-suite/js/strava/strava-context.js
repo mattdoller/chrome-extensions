@@ -5,13 +5,19 @@ var StravaContext = Class.$extend({
 
 	rideId : function() {
 		// http://app.strava.com/rides/<ride_id>
+		// or
+		// http://app.strava.com/activities/<activity_id>
 		var parsed = this.parseUrl(this.url);
 		
 		// /rides/<ride_id>		
 		var path = (parsed.path || '').toLowerCase();
-		var regex = /\/rides\/(\d+)/;
+		var regex = /\/(rides|activities)\/(\d+)/;
 		var matches = path.match(regex);
-		return (matches && matches[1]) ? matches[1] : null;
+		
+		// [0]: /rides/123
+		// [1]: rides
+		// [2]: 123
+		return (matches && matches[2]) ? matches[2] : null;
 	},
 
 	segmentId : function() {
@@ -22,6 +28,9 @@ var StravaContext = Class.$extend({
 		var path = (parsed.path || '').toLowerCase();
 		var regex = /\/segments\/(\d+)/;
 		var matches = path.match(regex);
+		
+		// [0]: /rides/123
+		// [1]: 123
 		return (matches && matches[1]) ? matches[1] : null;	
 	},
 
@@ -36,6 +45,9 @@ var StravaContext = Class.$extend({
 		var path = (parsed.path || '').toLowerCase();
 		var regex = /\/athletes\/(\d+)/;
 		var matches = path.match(regex);
+		
+		// [0]: /athletes/123
+		// [1]: 123
 		return (matches && matches[1]) ? matches[1] : null;
 	},
 

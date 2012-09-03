@@ -1,14 +1,21 @@
-test('Strava context tests', function() {
+test('StravaContext tests', function() {
 
 	var context = new StravaContext('http://app.strava.com/rides/123');
-	var id = context.rideId();
-	assert.equal(id, 123);
+	assert.equal(context.rideId(), 123);
 
+	context = new StravaContext('http://app.strava.com/activities/1234');
+	assert.equal(context.rideId(), 1234);
+	
 	context = new StravaContext('http://app.strava.com/segments/456');
-	id = context.segmentId();
-	assert.equal(id, 456);
+	assert.equal(context.segmentId(), 456);
 
 	context = new StravaContext('http://app.strava.com/athletes/789');
-	id = context.athleteId();
-	assert.equal(id, 789);
+	assert.equal(context.athleteId(), 789);
+	
+	// try some cases with a hash
+	context = new StravaContext('http://app.strava.com/rides/123#456');
+	assert.equal(context.rideId(), 123);
+
+	context = new StravaContext('http://app.strava.com/segments/456#def');
+	assert.equal(context.segmentId(), 456);
 });
