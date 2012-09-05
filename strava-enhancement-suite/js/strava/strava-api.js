@@ -1,49 +1,71 @@
-var StravaApi = Class.$extend({
-	__init__ : function() {
-	},
+var StravaApi = function() {
+};
+
+(function() {
 	
-	login : function(email, password) {
+		// private methods
+	function asyncGet(apiUrl, data) {
+		var json = $.ajax({
+			type: 'GET',
+			url: apiUrl,
+			data: data || {},
+			async: false
+		}).responseText;
+		return $.parseJSON(json);
+	};
+	
+	function asyncPost(apiUrl, data) {
+		var json = $.ajax({
+			type: 'POST',
+			url: apiUrl,
+			data: data || {},
+			async: false
+		}).responseText;
+		return $.parseJSON(json);
+	}
+	
+	this.login = function(email, password) {
 		var api = 'https://app.strava.com/api/v2/authentication/login';
 		var data = {
 			email: email,
 			password: password
 		};
-		return this.asyncPost(api, data);
-	},
+		return asyncPost(api, data);
+	};
 	
-	findAthlete : function(athleteId, token) {
+	this.findAthlete = function(athleteId, token) {
 		var api = 'http://app.strava.com/api/v2/athletes/' + athleteId;
 		var data = { token: token };
-		return this.asyncGet(api, data);
-	},
+		return asyncGet(api, data);
+	};
 	
-	findEffort : function(effortId) {
+	this.findEffort = function(effortId) {
 		var api = 'http://app.strava.com/api/v1/efforts/' + effortId;
-		return this.asyncGet(api);
-	},
+		return asyncGet(api);
+	};
 	
-	findRide : function(rideId) {
+	this.findRide = function(rideId) {
 		var api = 'http://app.strava.com/api/v1/rides/' + rideId;
-		return this.asyncGet(api);
-	},
+		return asyncGet(api);
+	};
 	
-	findRideEfforts : function(rideId) {
+	this.findRideEfforts = function(rideId) {
 		var api = 'http://app.strava.com/api/v2/rides/' + rideId + '/efforts';
-		return this.asyncGet(api);
-	},
+		return asyncGet(api);
+	};
 	
-	findRideStreams : function(rideId, streams) {
+	this.findRideStreams = function(rideId) {
 		var api = 'http://app.strava.com/api/v1/streams/' + rideId;
 		var data = { 'streams[]': (streams || []).join() };
-		return this.asyncGet(api, data);
-	},
+		return asyncGet(api, data);
+	};
 	
-	findSegment : function(segmentId) {
+	this.findSegment = function(segmentId) {
 		var api = 'http://app.strava.com/api/v1/segments/' + segmentId;
-		return this.asyncGet(api);
-	},
+		return asyncGet(api);
+	};
 	
-	findSegmentEfforts : function(segmentId, data) {
+	this.findSegmentEfforts = function(segmentId, data) {
 		/*
 			the data parameter can take a bunch of different params:
 			- clubId
@@ -56,26 +78,6 @@ var StravaApi = Class.$extend({
 
 		var api = 'http://app.strava.com/api/v1/segments/' + segmentId + '/efforts';
 		return this.asyncGet(api, data);
-	},
+	};
 	
-	// private methods
-	asyncGet : function(apiUrl, data) {
-		var json = $.ajax({
-			type: 'GET',
-			url: apiUrl,
-			data: data || {},
-			async: false
-		}).responseText;
-		return $.parseJSON(json);
-	},
-	
-	asyncPost : function(apiUrl, data) {
-		var json = $.ajax({
-			type: 'POST',
-			url: apiUrl,
-			data: data || {},
-			async: false
-		}).responseText;
-		return $.parseJSON(json);
-	}
-});
+}).call(StravaApi.prototype);

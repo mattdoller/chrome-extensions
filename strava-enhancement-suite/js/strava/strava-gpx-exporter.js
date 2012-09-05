@@ -1,10 +1,19 @@
-var StravaGpxExporter = Class.$extend({
-	__init__ : function(rideId, strava) {
-		this.rideId = rideId;
-		this.strava = (arguments.length == 1) ? new StravaApi() : strava;
-	},
+var StravaGpxExporter = function(rideId, strava) {
+	this._rideId = rideId;
+	this._strava = strava;
+};
 
-	toGpx : function() {
+(function() {
+
+	// private methods
+	function xmlEncode(s) {
+		return s
+			? s.replace(/&/gm,"&amp;").replace(/</gm,"&lt;").replace(/>/gm,"&gt;")
+			: '';
+	}
+
+	// public methods
+	this.toGpx = function() {
 		var template = 
 			'<gpx '
 			+ 'xmlns="http://www.topografix.com/GPX/1/0" ' 
@@ -31,21 +40,16 @@ var StravaGpxExporter = Class.$extend({
 			name: ride.name,
 			xml: Mustache.to_html(template, ride)
 		};
-	},
-	
-	toTcx : function() {
-		throw "toTcx not implemented."
-	},
+	};
 
-	getRide : function() {
-	
-		var rideJson = this.strava.findRide(this.rideId);
+	this.getRide = function() {
+		var rideJson = this._strava.findRide(this._rideId);
 
 		var streams = ['latlng', 'distance', 'altitude'];
-		var streamsJson = this.strava.findRideStreams(this.rideId, streams);
+		var streamsJson = this._strava.findRideStreams(this._rideId, streams);
 
 		var ride = {
-			name: this.xmlEncode(rideJson.ride.name),
+			name: xmlEncode(rideJson.ride.name),
 			distance: rideJson.ride.distance,
 			location: rideJson.ride.location,
 			description: rideJson.ride.description,
@@ -64,11 +68,6 @@ var StravaGpxExporter = Class.$extend({
 		}
 
 		return ride;
-	},
-	
-	xmlEncode : function(s) {
-		return s
-			? s.replace(/&/gm,"&amp;").replace(/</gm,"&lt;").replace(/>/gm,"&gt;")
-			: '';
-	}
-});
+	};
+
+}).call(StravaGpxExporter.prototype);

@@ -19,6 +19,7 @@
 			"js/lib/datejs/date.js",
 			"js/lib/datejs/core.js",
 			"js/lib/datejs/extras.js",
+			"js/lib/sprintf-0.7-beta1.js",
 			"js/strava/strava-context.js",
 			"js/strava/strava-gpx-exporter.js",
 			"js/strava/strava-api.js",
