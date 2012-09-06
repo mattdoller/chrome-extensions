@@ -53,6 +53,6 @@ test('StravaGpxExporter tests', function() {
 		+ 	'</trk>'
 		+ '</gpx>';
 
-	assert.equal('my ride', gpx.name);
-	assert.equal(expectedXml, gpx.xml);
+	equal('my ride', gpx.name, 'file name is set to ride name');
+	equal(expectedXml, gpx.xml, 'xml is built correctly');
 });

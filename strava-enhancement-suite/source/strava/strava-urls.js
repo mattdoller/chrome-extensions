@@ -1,13 +1,11 @@
 var StravaUrls = {};
 
 StravaUrls.rideUrl = function(rideId) {
-	var url = 'http://app.strava.com/rides/{0}';
-	return url.format([rideId]);
+	return 'http://app.strava.com/rides/{0}'.format([rideId]);
 };
 
 StravaUrls.athleteUrl = function(athleteId) {
-	var url = 'http://app.strava.com/athletes/{0}';
-	return url.format([athleteId]);
+	return 'http://app.strava.com/athletes/{0}'.format([athleteId]);
 };
 
 StravaUrls.dashboardUrl = function() {
@@ -15,11 +13,9 @@ StravaUrls.dashboardUrl = function() {
 };
 
 StravaUrls.segmentUrl = function(segmentId) {
-	var url = 'http://app.strava.com/segments/{0}';
-	return url.format([segmentId]);
+	return 'http://app.strava.com/segments/{0}'.format([segmentId]);
 };
 
 StravaUrls.effortUrl = function(rideId, segmentId) {
-	var url = 'http://app.strava.com/rides/{0}#{1}';
-	return url.format([rideId, segmentId]);
+	return 'http://app.strava.com/rides/{0}#{1}'.format([rideId, segmentId]);
 };
