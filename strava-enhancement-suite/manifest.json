@@ -13,7 +13,6 @@
 		],
 		"js": [
 			"js/lib/jquery-1.8.0.min.js",
-			"js/lib/classy.js",
 			"js/lib/mustache.js",
 			"js/lib/FileSaver.min.js",
 			"js/lib/datejs/date.js",
