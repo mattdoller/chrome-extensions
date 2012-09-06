@@ -12,17 +12,17 @@
 			"http://app.strava.com/rides/*" 
 		],
 		"js": [
-			"js/lib/jquery-1.8.0.min.js",
-			"js/lib/mustache.js",
-			"js/lib/FileSaver.min.js",
-			"js/lib/datejs/date.js",
-			"js/lib/datejs/core.js",
-			"js/lib/datejs/extras.js",
-			"js/lib/sprintf-0.7-beta1.js",
-			"js/strava/strava-context.js",
-			"js/strava/strava-gpx-exporter.js",
-			"js/strava/strava-api.js",
-			"js/rides-content.js"
+			"source/lib/jquery-1.8.0.min.js",
+			"source/lib/mustache.js",
+			"source/lib/FileSaver.min.js",
+			"source/lib/datejs/date.js",
+			"source/lib/datejs/core.js",
+			"source/lib/datejs/extras.js",
+			"source/strava/strava-urls.js",
+			"source/strava/strava-context.js",
+			"source/strava/strava-gpx-exporter.js",
+			"source/strava/strava-api.js",
+			"source/rides-content.js"
 		]
 	}]
 }
